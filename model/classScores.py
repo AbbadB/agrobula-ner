@@ -1,4 +1,8 @@
 '''
+Code modified by the author of AGROBULA-NER:
+    changed the labels to fit in the AGROBULA-NER labels
+
+
 Code entirely written by the authors of leNER-Br paper
 '''
 
@@ -77,8 +81,8 @@ def main(dataset, config):
     labels = [indxToTag[item] for items in labels for item in items]
     model.logger.info("Results on {} set".format(dataset.filename))
     model.logger.info(classification_report(labels, preds,
-          labels=['JURISPRUDENCIA', 'LOCAL', 'TEMPO',  'PESSOA', 'LEGISLACAO', 'ORGANIZACAO'], digits=4))
-    model.logger.info(f1_score(labels, preds, average='micro', labels=['JURISPRUDENCIA', 'LOCAL', 'TEMPO',  'PESSOA', 'LEGISLACAO', 'ORGANIZACAO']))
+          labels=['COMUM', 'CIENTIFICO', 'CULTURA',  'APLICACAO'], digits=4))
+    model.logger.info(f1_score(labels, preds, average='micro', labels=['COMUM', 'CIENTIFICO', 'CULTURA',  'APLICACAO']))
 
 if len(sys.argv) != 2 or sys.argv[1] not in ["train", "test", "dev"]:
     print("Usage: python classScores.py <train or test or dev>")

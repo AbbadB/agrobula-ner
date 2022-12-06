@@ -36,12 +36,10 @@ from nltk.tokenize.punkt import PunktSentenceTokenizer
 import sys
 
 bcolors = {
-    "PESSOA": '\033[94m',
-    "TEMPO": '\033[92m',
-    "LOCAL": '\033[93m',
-    "ORGANIZACAO": '\033[91m',
-    "JURISPRUDENCIA": '\033[35m',
-    "LEGISLACAO": '\033[36m',
+    "COMUM": '\033[94m',
+    "CIENTIFICO": '\033[92m',
+    "CULTURA": '\033[93m',
+    "APLICACAO": '\033[91m',
     "ENDC": '\033[0m',
     "O": ""
 }
@@ -58,7 +56,7 @@ filename = sys.argv[1]
 
 tokenizer = PunktSentenceTokenizer()
 
-with open(filename, 'r') as file:
+with open(filename, 'r', encoding="utf8") as file:
     text = file.read()
 
 tokenizer.train(text)

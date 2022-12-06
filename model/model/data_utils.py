@@ -1,4 +1,7 @@
 '''
+Code modified by the author of AGROBULA-NER:
+    changed the parameter on open to encode in utf-8
+
 Code modified by the authors of leNER-Br:
     Line split on space instead of tab
     Add preprocessing step of replacing digits with zeros
@@ -68,7 +71,7 @@ class CoNLLDataset(object):
     def __iter__(self):
         niter = 0
         n_line = 0
-        with open(self.filename) as f:
+        with open(self.filename, encoding="utf8") as f:
             words, tags = [], []
             for line in f:
                 n_line += 1
@@ -153,7 +156,7 @@ def get_glove_vocab(filename):
     """
     print("Building vocab...")
     vocab = set()
-    with open(filename) as f:
+    with open(filename, encoding="utf8") as f:
         for line in f:
             word = line.strip().split(' ')[0]
             vocab.add(word)
@@ -175,7 +178,7 @@ def write_vocab(vocab, filename):
 
     """
     print("Writing vocab...")
-    with open(filename, "w") as f:
+    with open(filename, "w", encoding='utf8') as f:
         for i, word in enumerate(vocab):
             if i != len(vocab) - 1:
                 f.write("{}\n".format(word))
@@ -196,7 +199,7 @@ def load_vocab(filename):
     """
     try:
         d = dict()
-        with open(filename) as f:
+        with open(filename, encoding="utf8") as f:
             for idx, word in enumerate(f):
                 word = word.strip()
                 d[word] = idx
@@ -217,7 +220,7 @@ def export_trimmed_glove_vectors(vocab, glove_filename, trimmed_filename, dim):
 
     """
     embeddings = np.zeros([len(vocab), dim])
-    with open(glove_filename) as f:
+    with open(glove_filename, encoding="utf8") as f:
         for line in f:
             line = line.strip().split(' ')
             word = line[0]
@@ -446,7 +449,7 @@ def create_tag_dict(filename):
     '''
     # index to tag dic
     indxToTag = dict()
-    with open(filename) as tags:
+    with open(filename, encoding="utf8") as tags:
         i = 0
         for line in tags:
             tag = line.rstrip('\n')

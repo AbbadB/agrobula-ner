@@ -1,4 +1,8 @@
 '''
+Code modified by the author of AGROBULA-NER:
+    changed the entities to fit in the AGROBULA-NER entities
+
+
 Code entirely written by the leNER-Br paper authors
 '''
 
@@ -33,12 +37,10 @@ from nltk import word_tokenize
 
 # Pessoa is blue, tempo is green, Local is yellow and organizacao is red
 bcolors = {
-    "PESSOA": '\033[94m',
-    "TEMPO": '\033[92m',
-    "LOCAL": '\033[93m',
-    "ORGANIZACAO": '\033[91m',
-    "JURISPRUDENCIA": '\033[35m',
-    "LEGISLACAO": '\033[36m',
+    "COMUM": '\033[94m', # purple
+    "CIENTIFICO": '\033[92m', # green
+    "CULTURA": '\033[93m', # yellow
+    "APLICACAO": '\033[91m', # red
     "ENDC": '\033[0m',
     "O": ""
 }

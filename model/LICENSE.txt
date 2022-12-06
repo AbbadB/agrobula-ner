@@ -1,3 +1,10 @@
+# It is requested that users cite the AGROBULA-NER that is
+# generated as a result of the use of the dataset.
+# 
+# Bruno W. Abbad
+# AGROBULA-NER: a Dataset for Named Entity Recognition in pesticide leaflets domain.
+
+
 # We kindly request that users cite our paper in any publication that is 
 # generated as a result of the use of our source code or our dataset.
 # 

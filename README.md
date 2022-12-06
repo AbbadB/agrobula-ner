@@ -1,6 +1,14 @@
-# LeNER-Br: a Dataset for Named Entity Recognition in Brazilian Legal Text
+# AGROBULA-NER: a Dataset for Named Entity Recognition in pesticide leaflets domain.
 
-This repo holds the dataset and source code described in the paper below, which was generated as a collaboration between two institutions of the University of Brasília: [NEXT (Núcleo de P&D para Excelência e Transformação do Setor Público)](http://next.unb.br/) and [CiC (Departamento de Ciência da Computação)](https://cic.unb.br/).
+This repo holds the dataset described in the development of the AGROBULA-NER
+
+It is requested that users cite the AGROBULA-NER that is generated as a result of the use of the dataset.
+
+* Bruno W. Abbad
+
+
+
+This repo holds the source code described in the paper below, which was generated as a collaboration between two institutions of the University of Brasília: [NEXT (Núcleo de P&D para Excelência e Transformação do Setor Público)](http://next.unb.br/) and [CiC (Departamento de Ciência da Computação)](https://cic.unb.br/).
 
 * [Pedro H. Luz de Araujo](http://lattes.cnpq.br/8374005378743328), [Teófilo E. de Campos](https://teodecampos.github.io/), [Renato R. R. de Oliveira](http://lattes.cnpq.br/8445622450972512), [Matheus Stauffer](http://lattes.cnpq.br/3634456971616689), [Samuel Couto](http://lattes.cnpq.br/1096145820609591) and [Paulo Bermejo](http://lattes.cnpq.br/9012704117180126)  
 [LeNER-Br: a Dataset for Named Entity Recognition in Brazilian Legal Text](https://teodecampos.github.io/luz_etal_propor2018.pdf)  
@@ -26,24 +34,29 @@ Download PDFs of the [paper](https://teodecampos.github.io/LeNER-Br/luz_etal_pro
 }	  
 ```
 
-We also provide the LSTM-CRF model described in the paper, which achieved an average f1-score of 92.53% (token) and 86.61% (entity) on the test set. 
 
 The sections below describe the requirements and the dataset and model files.
 
-We kindly request that users cite our paper in any publication that is generated as a result of the use of our source code, our dataset or our pre-trained models.
 
-**Note**: although this GitHub repository was created in May 2020 to increase the visibility of this project, the dataset and source code has been available from the [site of the authors](https://teodecampos.github.io/LeNER-Br/) since September 2018.
+**Note**: The source code has been available from the [site of the authors](https://teodecampos.github.io/LeNER-Br/) since September 2018.
 
 ## Requirements
 1. [Python 3.6](https://www.python.org/downloads/)	
 3. [pip](https://pip.pypa.io/en/stable/installing/)
 
-## LeNER-Br Dataset
+## AGROBULA-NER Dataset
 
 The directory structure is as follows:
 * the train, test and dev folders hold space separated text files where the first column are the words and the second column are the correspondent named entity tags. Sentences are separeted by empty lines. In addition, each folder has a file that is the concatenation of all the other conll files of the same folder (train.conll, dev.conll and test.conll).
-* metadata holds json files with additional information from each annotated document.
-* raw_text holds the source txt files that originated the conll files.
+* clean_html holds the html files cleaned during the preprocessing step.
+* conll_files holds all the labeled conll files.
+* raw_html holds the source html files that were originated from the pdf files.
+* raw_pdf holds the source pdf files that were originated from the webscraping.
+* raw_text holds the source text files that were originated from the html files.
+* V1 holds the files used in the model for the first version of AGROBULA-NER
+* V2 holds the files used in the model for the second version of AGROBULA-NER
+* V3 holds the files used in the model for the third version of AGROBULA-NER
+* V4 holds the files used in the model for the fourth version of AGROBULA-NER
 * scripts hold an abbreviation list used for sentence segmentation and the script that generated the conll files. To use the script:
 ```
 python textToConll.py path/to/txtfile
@@ -60,6 +73,11 @@ The section below summarizes the use of the model. For more in depth explanation
 * To install the required python packages, run from the model folder:
 ```
 pip install -r requirements.txt
+```
+
+* To create the vocabulary needed, if changes the version of the dataset, it is required to build data:
+```
+python build_data.py
 ```
 
 * To obtain the f1 scores (per token) for each class on each part of the dataset:
